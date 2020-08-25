@@ -1,0 +1,11 @@
+/Users/amy/Projects/MacSingingGenerator/SingingGenerator.Core/bin/Debug/SingingGenerator.Core.dll
+/Users/amy/Projects/MacSingingGenerator/SingingGenerator.Core/bin/Debug/SingingGenerator.Core.pdb
+/Users/amy/Projects/MacSingingGenerator/SingingGenerator.Core/obj/Debug/SingingGenerator.Core.csproj.CoreCompileInputs.cache
+/Users/amy/Projects/MacSingingGenerator/SingingGenerator.Core/obj/Debug/SingingGenerator.Core.dll
+/Users/amy/Projects/MacSingingGenerator/SingingGenerator.Core/obj/Debug/SingingGenerator.Core.pdb
+/Users/amy/Projects/MacSingingGenerator/SingingGenerator.Core/obj/Debug/SingingGenerator.Core.csprojAssemblyReference.cache
+/Users/amy/Projects/MacSingingGenerator/SingingGenerator.Core/bin/Debug/alsa-sharp.dll
+/Users/amy/Projects/MacSingingGenerator/SingingGenerator.Core/bin/Debug/Commons.Music.Midi.dll
+/Users/amy/Projects/MacSingingGenerator/SingingGenerator.Core/bin/Debug/alsa-sharp.pdb
+/Users/amy/Projects/MacSingingGenerator/SingingGenerator.Core/bin/Debug/Commons.Music.Midi.pdb
+/Users/amy/Projects/MacSingingGenerator/SingingGenerator.Core/obj/Debug/SingingGenerator.Core.csproj.CopyComplete

@@ -1,0 +1,316 @@
+{
+  "protocol_version" : "0.0.1",
+  "configuration" : {
+    "version" : "5.14.0 (explicit/000780ca82c)",
+    "tlc" : "normal",
+    "sigsgev" : "altstack",
+    "notifications" : "kqueue",
+    "architecture" : "amd64",
+    "disabled_features" : "none",
+    "smallconfig" : "disabled",
+    "bigarrays" : "disabled",
+    "softdebug" : "enabled",
+    "interpreter" : "enabled",
+    "llvm_support" : "disabled"
+  },
+  "memory" : {
+    "Resident Size" : "99561472",
+    "Virtual Size" : "4730982400",
+    "minor_gc_time" : "58309",
+    "major_gc_time" : "0",
+    "minor_gc_count" : "2",
+    "major_gc_count" : "0",
+    "major_gc_time_concurrent" : "0"
+  },
+  "threads" : [
+    {
+      "is_managed" : false,
+      "managed_thread_ptr" : "0xfc059878",
+      "thread_info_addr" : "0xfc058600",
+      "thread_name" : "Debugger agent",
+      "native_thread_id" : "0xf085000",
+      "ctx" : {
+        "IP" : "0x7fff53cedc32",
+        "SP" : "0x70000f084a28",
+        "BP" : "0x70000f084a80"
+      },
+      "unmanaged_frames" : [
+        {
+          "native_address" : "0x100122d77"
+        },
+        {
+          "native_address" : "0x10028d153"
+        },
+        {
+          "native_address" : "0x100131bd5"
+        },
+        {
+          "native_address" : "outside mono-sgen"
+        },
+        {
+          "native_address" : "outside mono-sgen"
+        },
+        {
+          "native_address" : "0x1000795e3"
+        },
+        {
+          "native_address" : "0x10028d609"
+        },
+        {
+          "native_address" : "0x10028d467"
+        },
+        {
+          "native_address" : "outside mono-sgen"
+        },
+        {
+          "native_address" : "outside mono-sgen"
+        },
+        {
+          "native_address" : "outside mono-sgen"
+        }
+      ]
+    },
+    {
+      "is_managed" : false,
+      "managed_thread_ptr" : "0xfc013a78",
+      "thread_info_addr" : "0xfc033800",
+      "thread_name" : "Finalizer",
+      "native_thread_id" : "0xee82000",
+      "ctx" : {
+        "IP" : "0x7fff53ce4236",
+        "SP" : "0x70000ee81d58",
+        "BP" : "0x70000ee81e00"
+      },
+      "unmanaged_frames" : [
+        {
+          "native_address" : "0x100122d77"
+        },
+        {
+          "native_address" : "0x10028d153"
+        },
+        {
+          "native_address" : "0x100131bd5"
+        },
+        {
+          "native_address" : "outside mono-sgen"
+        },
+        {
+          "native_address" : "0x10052c51b"
+        },
+        {
+          "native_address" : "0x10028d609"
+        },
+        {
+          "native_address" : "0x10028d467"
+        },
+        {
+          "native_address" : "outside mono-sgen"
+        },
+        {
+          "native_address" : "outside mono-sgen"
+        },
+        {
+          "native_address" : "outside mono-sgen"
+        }
+      ]
+    },
+    {
+      "is_managed" : false,
+      "managed_thread_ptr" : "0xfc03a678",
+      "thread_info_addr" : "0xfc01f200",
+      "native_thread_id" : "0x8c2a0380",
+      "ctx" : {
+        "IP" : "0x7fff53cedb66",
+        "SP" : "0x7ffee9e93b88",
+        "BP" : "0x7ffee9e93bc0"
+      },
+      "managed_frames" : [
+        {
+          "native_address" : "outside mono-sgen"
+        },
+        {
+          "native_address" : "outside mono-sgen",
+          "unmanaged_name" : "Xamarin.Mac"
+        },
+        {
+          "is_managed" : "true",
+          "guid" : "47213430-C634-4C88-B917-3468F9F9C5E3",
+          "token" : "0x600ce07",
+          "native_offset" : "0x172",
+          "il_offset" : "0x00012"
+        },
+        {
+          "is_managed" : "true",
+          "guid" : "83E14042-96AD-4609-B661-E8A34E764D9B",
+          "token" : "0x600000b",
+          "native_offset" : "0x318",
+          "il_offset" : "0x00050"
+        },
+        {
+          "is_managed" : "true",
+          "guid" : "83E14042-96AD-4609-B661-E8A34E764D9B",
+          "token" : "0x600002d",
+          "native_offset" : "0xc2",
+          "il_offset" : "0x00001"
+        },
+        {
+          "is_managed" : "true",
+          "guid" : "47213430-C634-4C88-B917-3468F9F9C5E3",
+          "token" : "0x60145d9",
+          "native_offset" : "0x110",
+          "il_offset" : "0x00011"
+        },
+        {
+          "native_address" : "outside mono-sgen",
+          "unmanaged_name" : "Xamarin.Mac"
+        },
+        {
+          "native_address" : "0x10013b570"
+        },
+        {
+          "native_address" : "outside mono-sgen",
+          "unmanaged_name" : "Xamarin.Mac"
+        },
+        {
+          "is_managed" : "true",
+          "guid" : "47213430-C634-4C88-B917-3468F9F9C5E3",
+          "token" : "0x600d0cf",
+          "native_offset" : "0x28a",
+          "il_offset" : "0x00040"
+        },
+        {
+          "is_managed" : "true",
+          "guid" : "83E14042-96AD-4609-B661-E8A34E764D9B",
+          "token" : "0x6000001",
+          "native_offset" : "0xba",
+          "il_offset" : "0x00007"
+        },
+        {
+          "native_address" : "outside mono-sgen",
+          "unmanaged_name" : "Mac Singing Generator"
+        }
+      ],
+    "unmanaged_frames" : [
+      {
+        "native_address" : "0x100122d77"
+      },
+      {
+        "native_address" : "0x10028d153"
+      },
+      {
+        "native_address" : "0x100127328"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "0x100030cd1"
+      },
+      {
+        "native_address" : "0x100030bb7"
+      },
+      {
+        "native_address" : "0x100039b19"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "0x10013b571"
+      },
+      {
+        "native_address" : "0x100236f2f"
+      },
+      {
+        "native_address" : "0x10023b843"
+      },
+      {
+        "native_address" : "0x1003535e8"
+      },
+      {
+        "native_address" : "0x10039e1c8"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      },
+      {
+        "native_address" : "outside mono-sgen"
+      }
+    ]
+  }
+]}

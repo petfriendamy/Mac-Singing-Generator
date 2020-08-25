@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneratorTest", "GeneratorTest\GeneratorTest.csproj", "{409674BB-4A3B-48EC-9FF6-E2A3FF980012}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingingGenerator.Core", "SingingGenerator.Core\SingingGenerator.Core.csproj", "{9AEB891F-DA56-4510-B465-A5F485B67BEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MacSingingGenerator", "MacSingingGenerator\MacSingingGenerator.csproj", "{D36E01B8-08EF-4BA1-B60F-E1F0165DE0DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{409674BB-4A3B-48EC-9FF6-E2A3FF980012}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{409674BB-4A3B-48EC-9FF6-E2A3FF980012}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{409674BB-4A3B-48EC-9FF6-E2A3FF980012}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{409674BB-4A3B-48EC-9FF6-E2A3FF980012}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AEB891F-DA56-4510-B465-A5F485B67BEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AEB891F-DA56-4510-B465-A5F485B67BEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AEB891F-DA56-4510-B465-A5F485B67BEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AEB891F-DA56-4510-B465-A5F485B67BEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D36E01B8-08EF-4BA1-B60F-E1F0165DE0DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D36E01B8-08EF-4BA1-B60F-E1F0165DE0DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D36E01B8-08EF-4BA1-B60F-E1F0165DE0DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D36E01B8-08EF-4BA1-B60F-E1F0165DE0DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,25 @@
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/bin/Debug/Mac Singing Generator.exe
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/bin/Debug/Mac Singing Generator.pdb
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/bin/Debug/SingingGenerator.Core.dll
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/bin/Debug/Xamarin.Mac.dll
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/bin/Debug/Commons.Music.Midi.dll
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/bin/Debug/alsa-sharp.dll
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/bin/Debug/SingingGenerator.Core.pdb
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/bin/Debug/Xamarin.Mac.pdb
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/bin/Debug/Commons.Music.Midi.pdb
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/bin/Debug/alsa-sharp.pdb
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/obj/Debug/actool/_PartialAppManifest.items
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/obj/Debug/actool/_BundleResourceWithLogicalName.items
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/obj/Debug/ibtool-manifests/MainMenu.nib
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/obj/Debug/ibtool-manifests/MainWindow.nib
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/obj/Debug/ibtool/MainMenu.nib
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/obj/Debug/ibtool/MainWindow.nib
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/obj/Debug/MacSingingGenerator.csprojAssemblyReference.cache
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/obj/Debug/MacSingingGenerator.csproj.CoreCompileInputs.cache
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/obj/Debug/MacSingingGenerator.csproj.CopyComplete
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/obj/Debug/Mac Singing Generator.exe
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/obj/Debug/Mac Singing Generator.pdb
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/obj/Debug/ibtool-manifests/LyricEditorWindow.nib
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/obj/Debug/ibtool/LyricEditorWindow.nib
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/obj/Debug/ibtool-manifests/TrackChooserWindow.nib
+/Users/amy/Projects/MacSingingGenerator/MacSingingGenerator/obj/Debug/ibtool/TrackChooserWindow.nib
