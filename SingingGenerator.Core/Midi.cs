@@ -77,9 +77,9 @@ namespace SingingGenerator.Core
         }
 
         //returns a list of notes from a track
-        public List<Beat> GetNotesFromTrack(int track)
+        public List<SongEvent> GetNotesFromTrack(int track)
         {
-            var notes = new List<Beat> { };
+            var notes = new List<SongEvent> { };
             int newNote = 0, currTime = 0, noteStart = -1, noteEnd = -1;
             int? currNote = null;
 

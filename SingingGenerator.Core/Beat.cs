@@ -1,7 +1,7 @@
 ﻿using System;
 namespace SingingGenerator.Core
 {
-    public abstract class Beat
+    public abstract class Beat : SongEvent
     {
         public int NoteLength { get; protected set; }
         public int NotesPerBeat { get; protected set; }
@@ -45,7 +45,20 @@ namespace SingingGenerator.Core
             //assume beat is 1/16 until proven otherwise
             int notesPerBeat = 4;
             double sixteenth = 15000.0 / tempo,
-                length = Math.Round(milliseconds / sixteenth);
+                length = milliseconds / sixteenth,
+                roundedLength = Math.Round(length);
+
+            //check if note divides evenly (or near evenly)
+            if (length > roundedLength - 0.01 && length < roundedLength + 0.01)
+            {
+                length = roundedLength;
+            }
+            else //if not, assume note is a triplet
+            {
+                double triplet = 20000.0 / tempo;
+                notesPerBeat = 3;
+                length = Math.Round(milliseconds / triplet);
+            }
 
             while (length < 1) //if beat is shorter than 1/16
             {

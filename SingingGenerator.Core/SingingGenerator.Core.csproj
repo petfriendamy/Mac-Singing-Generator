@@ -43,6 +43,8 @@
     <Compile Include="Rest.cs" />
     <Compile Include="Midi.cs" />
     <Compile Include="Phoneme.cs" />
+    <Compile Include="SongEvent.cs" />
+    <Compile Include="TempoChangeEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

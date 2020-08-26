@@ -67,7 +67,7 @@ namespace MacSingingGenerator
             try
             {
                 speech.Voice = SystemVoices[0].Identifier;
-                return Phoneme.GetPhonemesFromString(speech.PhonemesFromText(text));
+                return Phoneme.GetPhonemesFromString(speech.PhonemesFromText(text.Replace('-', ' ')));
             }
             catch (FormatException ex)
             {

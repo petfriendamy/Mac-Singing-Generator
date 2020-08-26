@@ -42,6 +42,9 @@ namespace MacSingingGenerator
 		[Action ("AddRestButton:")]
 		partial void AddRestButton (Foundation.NSObject sender);
 
+		[Action ("AddTempoChangeButton:")]
+		partial void AddTempoChangeButton (Foundation.NSObject sender);
+
 		[Action ("ChangeTempoButton:")]
 		partial void ChangeTempoButton (Foundation.NSObject sender);
 
@@ -50,6 +53,9 @@ namespace MacSingingGenerator
 
 		[Action ("RemoveButton:")]
 		partial void RemoveButton (Foundation.NSObject sender);
+
+		[Action ("RemoveTempoChangeButton:")]
+		partial void RemoveTempoChangeButton (Foundation.NSObject sender);
 
 		[Action ("SaveVoiceButton:")]
 		partial void SaveVoiceButton (Foundation.NSObject sender);

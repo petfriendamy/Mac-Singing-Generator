@@ -5,9 +5,7 @@ namespace SingingGenerator.Core
     public class Note : Beat
     {
         //private members
-        private char noteLetter;
         private List<Phoneme> phonemes = new List<Phoneme> { };
-        int octave;
         private int noteValue;
 
         //basing frequency of note on A4 at 440 Hz

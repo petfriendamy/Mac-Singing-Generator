@@ -94,7 +94,7 @@ namespace SingingGenerator.Core
         //get 2D phoneme array from a phoneme string
         public static Phoneme[][] GetPhonemesFromString(string value)
         {
-            var words = value.Split(' ', '-');
+            var words = value.Split(' ');
 
             var phonList = new List<Phoneme[]> { };
             foreach (var word in words)

@@ -130,7 +130,7 @@ namespace MacSingingGenerator
                     try
                     {
                         song.ImportFromSpeechSynthesisScript(loadPath.RelativePath);
-                        TempoField.StringValue = song.Tempo.ToString();
+                        TempoField.StringValue = song.GlobalTempo.ToString();
                         currentFile = loadPath;
                         UpdateOutput(false);
                     }
@@ -304,22 +304,64 @@ namespace MacSingingGenerator
             }
         }
 
-        //change the tempo of the song
-        partial void ChangeTempoButton(NSObject sender)
+        //get tempo data from user controls
+        private int GetTempo()
         {
             if (int.TryParse(TempoField.StringValue, out int tempo) && tempo > 0)
             {
-                song.Tempo = tempo;
+                return tempo;
+            }
+            throw new ArgumentException("Invalid tempo.");
+        }
+
+        //change the global tempo of the song
+        partial void ChangeTempoButton(NSObject sender)
+        {
+            try
+            {
+                song.GlobalTempo = GetTempo();
                 UpdateOutput(true);
             }
-            else
+            catch (ArgumentException ex)
             {
                 using (var alert = new NSAlert())
                 {
-                    alert.MessageText = "Invalid tempo!";
+                    alert.MessageText = ex.Message;
                     alert.RunModal();
                 }
             }
+        }
+
+        //add a tempo change event
+        partial void AddTempoChangeButton(NSObject sender)
+        {
+            try
+            {
+                if (!song.AppendTempoChange(GetTempo()))
+                {
+                    using (var alert = new NSAlert())
+                    {
+                        alert.MessageText = "Event was not added because there was no change in tempo.";
+                        alert.RunModal();
+                    }
+                }
+                UpdateOutput(true);
+            }
+            catch (ArgumentException ex)
+            {
+                using (var alert = new NSAlert())
+                {
+                    alert.MessageText = ex.Message;
+                    alert.RunModal();
+                }
+            }
+        }
+
+        //remove last tempo change event
+        partial void RemoveTempoChangeButton(NSObject sender)
+        {
+            song.RemoveLastNonNote();
+            UpdateOutput(true);
         }
 
         //get length data from the user controls
@@ -378,7 +420,7 @@ namespace MacSingingGenerator
 
             try
             {
-                song.AppendNote(new Note(Note.GetNoteFromLetter(note, isSharp, octave), length.Length, length.NotesPerBeat));
+                song.AppendNote(Note.GetNoteFromLetter(note, isSharp, octave), length.Length, length.NotesPerBeat);
                 UpdateOutput(true);
             }
             catch (ArgumentOutOfRangeException ex)
@@ -402,7 +444,7 @@ namespace MacSingingGenerator
         //remove the last note or rest
         partial void RemoveButton(NSObject sender)
         {
-            song.RemoveLastNote();
+            song.RemoveLastNoteOrRest();
             UpdateOutput(true);
         }
 

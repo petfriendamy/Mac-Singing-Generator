@@ -8,50 +8,122 @@ namespace SingingGenerator.Core
     public class Song
     {
         //private list to hold notes
-        private List<Beat> notes;
+        private List<SongEvent> events;
 
         //properties
-        public int Tempo { get; set; }
+        public int GlobalTempo { get; set; }
+        public bool HasEvents
+        {
+            get
+            {
+                return events.Count > 0;
+            }
+        }
 
         //constructor
         public Song(int tempo = 120)
         {
-            notes = new List<Beat> { };
-            Tempo = tempo;
+            events = new List<SongEvent> { };
+            GlobalTempo = tempo;
+        }
+
+        //append an event to the song
+        private void Append(SongEvent songEvent)
+        {
+            events.Add(songEvent);
         }
 
         //append a note to the end of the song
-        public void AppendNote(Note note)
+        public void AppendNote(int offset, int length, int notesPerBeat)
         {
-            notes.Add(note);
+            Append(new Note(offset, length, notesPerBeat));
         }
 
         //append a rest to the end of the song
         public void AppendRest(int length, int notesPerBeat)
         {
-            notes.Add(new Rest(length, notesPerBeat));
+            Append(new Rest(length, notesPerBeat));
         }
 
-        //remove a note from the end of the song
-        public void RemoveLastNote()
+        //append a tempo change event
+        public bool AppendTempoChange(int tempo)
         {
-            if (notes.Count > 0)
+            //if events list is empty, change global tempo instead
+            if (events.Count == 0) 
             {
-                notes.RemoveAt(notes.Count - 1);
+                GlobalTempo = tempo;
+            }
+            //if last event is already a tempo change, overwrite it
+            else if (events[events.Count - 1] is TempoChangeEvent)
+            {
+                var tempoChange = events[events.Count - 1] as TempoChangeEvent;
+                tempoChange.Tempo = tempo;
+            }
+            else
+            {
+                //check if there are other tempo change events already
+                bool changeExists = false;
+                for (int i = events.Count - 2; i > 0 && !changeExists; ++i)
+                {
+                    if (events[i] is TempoChangeEvent)
+                    {
+                        //if tempo is the same as last event's tempo, ignore new event
+                        if ((events[i] as TempoChangeEvent).Tempo == tempo) 
+                        {
+                            return false;
+                        }
+                        changeExists = true;
+                    }
+                }
+                if (!changeExists) //if no change events exist, compare to global tempo
+                {
+                    if (tempo == GlobalTempo)
+                    {
+                        return false;
+                    }
+                }
+                Append(new TempoChangeEvent(tempo));
+            }
+            return true;
+        }
+
+        //remove a note or rest from the end of the song
+        public void RemoveLastNoteOrRest()
+        {
+            for (int i = events.Count - 1; i > 0; --i)
+            {
+                if (events[i] is Beat)
+                {
+                    events.RemoveAt(i);
+                    return;
+                }
+            }
+        }
+
+        //remove the last non-Beat event from the song
+        public void RemoveLastNonNote()
+        {
+            for (int i = events.Count - 1; i > 0; --i)
+            {
+                if (!(events[i] is Beat))
+                {
+                    events.RemoveAt(i);
+                    return;
+                }
             }
         }
 
         //get a string of phonemes and set the lyrics accordingly
         public void SetLyricsFromPhonemeArray(Phoneme[][] phonemes)
         {
-            for (int i = 0, j = 0; i < phonemes.Length && j < notes.Count; ++i, ++j)
+            for (int i = 0, j = 0; i < phonemes.Length && j < events.Count; ++i, ++j)
             {
                 //skip rests
-                while (notes[j] is Rest && j < notes.Count) { ++j; }
+                while (events[j] is Rest && j < events.Count) { ++j; }
 
-                if (j < notes.Count)
+                if (j < events.Count)
                 {
-                    (notes[j] as Note).SetPhonemes(phonemes[i]);
+                    (events[j] as Note).SetPhonemes(phonemes[i]);
                 }
             }
         }
@@ -62,7 +134,7 @@ namespace SingingGenerator.Core
             //fix for halfsteps later
             try
             {
-                foreach (var note in notes)
+                foreach (var note in events)
                 {
                     if (note is Note)
                     {
@@ -81,15 +153,31 @@ namespace SingingGenerator.Core
         //get whole song in Apple speech synthesis script
         public string GetSpeechSynthesisScript()
         {
-            string output = $"[[cmnt Tempo: {Tempo}]]\n[[inpt TUNE]]\n";
-            for (int i = 0; i < notes.Count; ++i)
+            string output = $"[[cmnt Tempo: {GlobalTempo}]]\n[[inpt TUNE]]\n";
+            int currTempo = GlobalTempo;
+            for (int i = 0; i < events.Count; ++i)
             {
-                Beat temp = null;
-                if (i + 1 < notes.Count) //get next note's data
-                { 
-                    temp = notes[i + 1];
+                if (events[i] is Beat)
+                {
+                    Beat curr = events[i] as Beat, next = null;
+                    int j = 1;
+                    while (i + j < events.Count && next == null)
+                    {
+                        if (events[i + j] is Beat) //get next note's data
+                        {
+                            next = events[i + j] as Beat;
+                        }
+                        j++;
+                    }
+                    output += curr.GetSpeechSynthesisScript(currTempo, next);
                 }
-                output += notes[i].GetSpeechSynthesisScript(Tempo, temp) + "~\n";
+                else if (events[i] is TempoChangeEvent)
+                {
+                    var tempoChange = events[i] as TempoChangeEvent;
+                    currTempo = tempoChange.Tempo;
+                    output += tempoChange.GetSpeechSynthesisScript();
+                }
+                output += "~\n";
             }
             output += "[[inpt TEXT]]";
 
@@ -104,8 +192,8 @@ namespace SingingGenerator.Core
                 using (var streamReader = new StreamReader(fileStream))
                 {
                     string read;
-                    int tempo = 0;
-                    var readNotes = new List<Beat> { };
+                    int initialTempo = 0;
+                    var readNotes = new List<SongEvent> { };
                     double length, pitch, noteLength = 0, notePitch = 0;
                     List<Phoneme> phonemes = null;
 
@@ -113,13 +201,13 @@ namespace SingingGenerator.Core
                     {
                         read = streamReader.ReadLine().Trim();
                         string pattern;
-                        if (tempo == 0)
+                        if (initialTempo == 0)
                         {
                             pattern = @"^\[\[cmnt Tempo: ([\d]+)\]\]$";
                             if (Regex.IsMatch(read, pattern))
                             {
                                 var groups = Regex.Match(read, pattern).Groups;
-                                tempo = int.Parse(groups[1].Value);
+                                initialTempo = int.Parse(groups[1].Value);
                             }
                             else
                             {
@@ -133,7 +221,7 @@ namespace SingingGenerator.Core
                             {
                                 if (phonemes != null)
                                 {
-                                    var note = new Note(tempo, notePitch, noteLength);
+                                    var note = new Note(initialTempo, notePitch, noteLength);
                                     note.SetPhonemes(phonemes.ToArray());
                                     readNotes.Add(note);
                                     phonemes = null;
@@ -149,7 +237,7 @@ namespace SingingGenerator.Core
                                     var phon = new Phoneme(groups[1].Value);
                                     if (phon.IsPause())
                                     {
-                                        readNotes.Add(new Rest(tempo, length));
+                                        readNotes.Add(new Rest(initialTempo, length));
                                     }
                                     else
                                     {
@@ -181,8 +269,8 @@ namespace SingingGenerator.Core
                         }
                     }
                     //if everything goes through, pass the loaded song to the object
-                    Tempo = tempo;
-                    notes = readNotes;
+                    GlobalTempo = initialTempo;
+                    events = readNotes;
                 }
             }
         }
@@ -190,8 +278,8 @@ namespace SingingGenerator.Core
         //import from a midi track
         public void ImportFromMidiTrack(Midi midi, int track)
         {
-            Tempo = midi.Tempo;
-            notes = midi.GetNotesFromTrack(track);
+            GlobalTempo = midi.Tempo;
+            events = midi.GetNotesFromTrack(track);
         }
     }
 }
