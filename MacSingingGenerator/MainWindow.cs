@@ -334,10 +334,18 @@ namespace MacSingingGenerator
                 NotesPerBeat = 1
             };
 
-            if (isTriplet) //to fix
+            if (isTriplet)
             {
-                n.Length = 2;
-                n.NotesPerBeat = 3;
+                if (fraction > 8)
+                {
+                    n.Length = 1;
+                    n.NotesPerBeat = fraction / 16;
+                }
+                else
+                {
+                    n.NotesPerBeat = 3;
+                    n.Length = 8 / fraction;
+                }
             }
             else
             {
