@@ -136,7 +136,15 @@ namespace SingingGenerator.Core
             {
                 if (next != null && next is Note)
                 {
-                    phons.Add((next as Note).GetPhonemes()[0]);
+                    var nextPhoneme = (next as Note).GetPhonemes()[0];
+                    if (nextPhoneme.IsConsonant())
+                    {
+                        phons.Add(nextPhoneme);
+                    }
+                    else
+                    {
+                        phons.Add(new Phoneme("h"));
+                    }
                 }
                 else
                 {
@@ -148,10 +156,15 @@ namespace SingingGenerator.Core
                 length = (GetLengthInMilliseconds(tempo) - ((phons.Count - 1) * 15)).ToString();
 
             string output = "";
+            bool vowel = false;
             foreach (var phon in phons)
             {
                 output += phon.Value + " {D ";
-                if (phon.IsVowel()) { output += length; }
+                if (phon.IsVowel() && !vowel)
+                {
+                    output += length;
+                    vowel = true;
+                }
                 else { output += "15"; }
                 output += "; P " + frequency + ":0}\n";
             }
