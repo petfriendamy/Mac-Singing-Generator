@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>SingingGenerator.Core</RootNamespace>
     <AssemblyName>SingingGenerator.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

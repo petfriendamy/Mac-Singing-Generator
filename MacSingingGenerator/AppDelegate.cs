@@ -87,17 +87,6 @@ namespace MacSingingGenerator
         partial void ImportMidi(NSObject sender)
         {
             mainWindowController.Window.ImportMidi();
-            /*using (var alert = new NSAlert())
-            {
-                alert.MessageText = "This feature is a work in progress, and may not work as intended. Continue anyway?";
-                alert.AddButton("Yes"); //1000
-                alert.AddButton("No"); //1001
-                var result = alert.RunModal();
-                if (result == 1000)
-                {
-                    mainWindowController.Window.ImportMidi();
-                }
-            }*/
         }
     }
 }

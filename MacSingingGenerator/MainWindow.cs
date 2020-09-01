@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 
 using Foundation;
@@ -77,21 +76,14 @@ namespace MacSingingGenerator
         {
             if (UnsavedChanges)
             {
-                using (var alert = new NSAlert())
+                var result = Alert.CreateAlert("There are unsaved changes! Do you want to save them first?", (appIsClosing ? AlertType.YesNo : AlertType.YesNoCancel));
+                if (result == AlertResult.Yes)
                 {
-                    alert.MessageText = "There are unsaved changes! Do you want to save them first?";
-                    alert.AddButton("Yes"); //1000
-                    alert.AddButton("No"); //1001
-                    if (!appIsClosing) { alert.AddButton("Cancel"); } //1002 
-                    var result = alert.RunModal();
-                    if (result == 1000)
-                    {
-                        SaveFile(false);
-                    }
-                    if (result == 1002)
-                    {
-                        return false;
-                    }
+                    SaveFile(false);
+                }
+                if (result == AlertResult.Cancel)
+                {
+                    return false;
                 }
             }
             return true;
@@ -136,27 +128,15 @@ namespace MacSingingGenerator
                     }
                     catch (IOException ex)
                     {
-                        using (var alert = new NSAlert())
-                        {
-                            alert.MessageText = $"An error occured while loading the file. ({ex.Message})";
-                            alert.RunModal();
-                        }
+                        Alert.CreateAlert($"An error occured while loading the file. ({ex.Message})", AlertType.Caution);
                     }
                     catch (UnauthorizedAccessException)
                     {
-                        using (var alert = new NSAlert())
-                        {
-                            alert.MessageText = "File cannot be accessed.";
-                            alert.RunModal();
-                        }
+                        Alert.CreateAlert("File cannot be accessed.", AlertType.Caution);
                     }
                     catch (FormatException ex)
                     {
-                        using (var alert = new NSAlert())
-                        {
-                            alert.MessageText = ex.Message;
-                            alert.RunModal();
-                        }
+                        Alert.CreateAlert(ex.Message, AlertType.Caution);
                     }
                 }
             }
@@ -200,19 +180,11 @@ namespace MacSingingGenerator
                 }
                 catch (IOException ex)
                 {
-                    using (var alert = new NSAlert())
-                    {
-                        alert.MessageText = $"An error occured while saving the file. ({ex.Message})";
-                        alert.RunModal();
-                    }
+                    Alert.CreateAlert($"An error occured while saving the file. ({ex.Message})", AlertType.Caution);
                 }
                 catch (UnauthorizedAccessException)
                 {
-                    using (var alert = new NSAlert())
-                    {
-                        alert.MessageText = "File cannot be accessed.";
-                        alert.RunModal();
-                    }
+                    Alert.CreateAlert("File cannot be accessed.", AlertType.Caution);
                 }
             }
         }
@@ -233,18 +205,10 @@ namespace MacSingingGenerator
             }
             else
             {
-                using (var alert = new NSAlert())
-                {
-                    if (octave > 0)
-                    {
-                        alert.MessageText = "Can't go any higher!";
-                    }
-                    else
-                    {
-                        alert.MessageText = "Can't go any lower!";
-                    }
-                    alert.RunModal();
-                }
+                string message;
+                if (octave > 0) { message = "Can't go any higher!"; }
+                else { message = "Can't go any lower!"; }
+                Alert.CreateAlert(message, AlertType.Caution);
             }
         }
 
@@ -294,11 +258,7 @@ namespace MacSingingGenerator
                     }
                     catch (Exception ex)
                     {
-                        using (var alert = new NSAlert())
-                        {
-                            alert.MessageText = ex.Message;
-                            alert.RunModal();
-                        }
+                        Alert.CreateAlert(ex.Message, AlertType.Caution);
                     }
                 }
             }
@@ -324,11 +284,7 @@ namespace MacSingingGenerator
             }
             catch (ArgumentException ex)
             {
-                using (var alert = new NSAlert())
-                {
-                    alert.MessageText = ex.Message;
-                    alert.RunModal();
-                }
+                Alert.CreateAlert(ex.Message, AlertType.Caution);
             }
         }
 
@@ -339,21 +295,13 @@ namespace MacSingingGenerator
             {
                 if (!song.AppendTempoChange(GetTempo()))
                 {
-                    using (var alert = new NSAlert())
-                    {
-                        alert.MessageText = "Event was not added because there was no change in tempo.";
-                        alert.RunModal();
-                    }
+                    Alert.CreateAlert("Event was not added because there was no change in tempo.", AlertType.Info);
                 }
                 UpdateOutput(true);
             }
             catch (ArgumentException ex)
             {
-                using (var alert = new NSAlert())
-                {
-                    alert.MessageText = ex.Message;
-                    alert.RunModal();
-                }
+                Alert.CreateAlert(ex.Message, AlertType.Caution);
             }
         }
 
@@ -425,11 +373,7 @@ namespace MacSingingGenerator
             }
             catch (ArgumentOutOfRangeException ex)
             {
-                using (var alert = new NSAlert())
-                {
-                    alert.MessageText = ex.Message;
-                    alert.RunModal();
-                }
+                Alert.CreateAlert(ex.Message, AlertType.Caution);
             }
         }
 
@@ -483,11 +427,7 @@ namespace MacSingingGenerator
             {
                 if (SpeechSynthesizer.SaveToFile(song.GetSpeechSynthesisScript(), SpeechSynthesizer.SystemVoices[SystemVoicesMenu.IndexOfSelectedItem], savePath))
                 {
-                    using (var alert = new NSAlert())
-                    {
-                        alert.MessageText = "Saved successfully.";
-                        alert.RunModal();
-                    }
+                    Alert.CreateAlert("Saved successfully.", AlertType.Info);
                 }
             }
         }

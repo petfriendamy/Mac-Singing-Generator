@@ -40,11 +40,7 @@ namespace MacSingingGenerator
             }
             catch (FormatException ex)
             {
-                using (var alert = new NSAlert())
-                {
-                    alert.MessageText = ex.Message;
-                    alert.RunModal();
-                }
+                Alert.CreateAlert(ex.Message, AlertType.Caution);
             }
         }
 
